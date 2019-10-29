@@ -1,4 +1,4 @@
-# JenniferTwin [![Latest Release](https://img.shields.io/github/release/imdrasil/jennifer_twin.svg)](https://github.com/imdrasil/jennifer.cr/releases)
+# JenniferTwin [![Latest Release](https://img.shields.io/github/release/imdrasil/jennifer_twin.svg)](https://github.com/imdrasil/jennifer_twin/releases)
 
 Super simple library to dump/load [Jennifer](https://github.com/imdrasil/jennifer.cr) model attributes to plain class instance to be able to integrate it with any kind of hidden attributes.
 
