@@ -1,0 +1,20 @@
+name: jennifer_twin
+version: 0.1.0
+
+authors:
+  - Roman Kalnytskyi <moranibaca@gmail.com>
+
+crystal: 0.31.1
+
+license: MIT
+
+development_dependencies:
+  jennifer:
+    github: "imdrasil/jennifer.cr"
+    branch: master
+  jennifer_sqlite3_adapter:
+    github: "imdrasil/jennifer_sqlite3_adapter"
+    branch: master
+  sam:
+    github: imdrasil/sam.cr
+    version: 0.3.1
