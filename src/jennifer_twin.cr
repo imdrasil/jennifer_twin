@@ -6,7 +6,7 @@ module JenniferTwin
     {% for field, opts in metadata %}
       {% if !(options[field] && options[field][:ignore] == true) %}
         {% field_name = (options[field] ? options[field][:key] : nil) || field %}
-        @{{field_name.id}} : {{opts[:parsed_type].id}}
+        getter {{field_name.id}} : {{opts[:parsed_type].id}}
       {% end %}
     {% end %}
 
