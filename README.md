@@ -10,7 +10,7 @@ Super simple library to dump/load [Jennifer](https://github.com/imdrasil/jennife
 dependencies:
   jennifer_twin:
     github: imdrasil/jennifer_twin
-    version: 0.1.0
+    version: 0.1.1
 ```
 
 2. Run `shards install`
@@ -27,6 +27,8 @@ To create a **twin** include `JenniferTwin` and call `.map_fields` macro:
 require "jennifer_twin"
 
 class UserTwin
+  include JenniferTwin
+
   map_fields User
 end
 ```
@@ -35,7 +37,7 @@ end
 
 `.map_fields` macro generates only 3 things:
 
-- getters for fields named after model's ones (unless other name is specified)
+- getters for all fields named after model's ones (unless other name is specified)
 - initializer accepting model instance to copy
 - `#to_model` method to create a model instance from it's fields
 
@@ -49,6 +51,7 @@ As a 2nd argument macro accepts named tuple or symbol-based hash of field option
 
 - `:ignore` - if set to `true` ignores specified field
 - `:key` - defines attribute with the specified value
+- `:annotations` - adds annotations above field setter
 
 Let's take a look at more descriptive example:
 
@@ -67,14 +70,12 @@ class UserTwin
   include JSON::Serializable
 
   map_fields(User, {
+    age: { annotations: [@[JSON::Field(emit_null: true)]] }
     name: { key: :full_name },
     password_hash: { ignore: true }
   })
 
   setter full_name
-
-  @[JSON::Field(emit_null: true)]
-  @age : Int32?
 end
 
 user = User.all.first # <User:0x000000000010 id: 1, name: "User 8", age: nil, password_hash: "<hash>">
@@ -84,8 +85,6 @@ user_twin.to_json # => %({"id":1,"full_name":"User 8","age":null})
 user_twin.full_name = "New Name"
 user_twin.to_modal # <User:0x000000000030 id: nil, name: "New Name", age: nil, password_hash: nil>
 ```
-
-As you see to define any custom annotation you need to redefine field.
 
 Also you can add additional custom logic to generated initializer passing a block to the macro call. To access model instance use `record` variable name.
 
