@@ -1,10 +1,10 @@
 name: jennifer_twin
-version: 0.1.0
+version: 0.1.1
 
 authors:
   - Roman Kalnytskyi <moranibaca@gmail.com>
 
-crystal: 0.31.1
+crystal: 0.35.1
 
 license: MIT
 
@@ -17,4 +17,4 @@ development_dependencies:
     branch: master
   sam:
     github: imdrasil/sam.cr
-    version: 0.3.1
+    version: 0.4.0

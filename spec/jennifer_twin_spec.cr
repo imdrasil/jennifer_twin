@@ -14,12 +14,12 @@ class RenamedFieldUserTwin
   include YAML::Serializable
 
   map_fields(User, {
-    name: { key: :first_name }
+    name: { key: :first_name },
+    id: { annotations: [
+      @[JSON::Field(key: :oid, emit_null: true)],
+      @[YAML::Field(key: :oid, emit_null: true)]
+    ]}
   })
-
-  @[JSON::Field(key: :oid, emit_null: true)]
-  @[YAML::Field(key: :oid, emit_null: true)]
-  @id : Int32?
 end
 
 class IgnoredFieldUserTwin
